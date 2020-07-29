@@ -5,11 +5,9 @@ import './App.css';
 
 // CUSTOM COMPONENTS
 import AppLayout from '../AppLayout/AppLayout';
+import ElementForm from '../ElementForm/ElementForm';
 
 class App extends Component {
-  state = {
-    newElement: '',
-  }
 
   //
   // COMPONENT LIFECYCLE
@@ -21,55 +19,10 @@ class App extends Component {
     });
   }
 
-  //
-  // EVENT HANDLERS
-  // ------------------------------
-
-  handleChange = (event) => {
-    this.setState({
-      newElement: event.target.value,
-    });
-  }
-
-  handleClick = () => {
-    this.props.dispatch({
-      type: 'POST_ELEMENT',
-      payload: this.state
-    });
-  }
-
   render() {
     return (
       <AppLayout>
-        <div className="formWrap">
-          {/* BUTTON ONE INCREMENTS */}
-          {/* <button
-            className="btn"
-            onClick={() => this.props.dispatch({ type: 'BUTTON_ONE' })}
-          >
-            Button One
-          </button> */}
-          {/* BUTTON TWO DECREMENTS */}
-          {/* <button
-            className="btn"
-            onClick={() => this.props.dispatch({ type: 'BUTTON_TWO' })}
-          >
-            Button Two
-          </button> */}
-
-          {/* ADDING ELEMENTS TO THE SERVER */}
-          <input
-            className="field"
-            value={this.state.newElement}
-            onChange={this.handleChange}
-          />
-          <button
-            className="btn"
-            onClick={this.handleClick}
-          >
-            Add Element
-          </button>
-        </div>
+        <ElementForm />
 
         <pre className="txt_lg">{JSON.stringify(this.props.store)}</pre>
       </AppLayout>
