@@ -16,7 +16,9 @@ class App extends Component {
   // ------------------------------
 
   componentDidMount() {
-    this.getElements();
+    this.props.dispatch({
+      type: 'GET_ELEMENTS',
+    });
   }
 
   //
@@ -30,34 +32,10 @@ class App extends Component {
   }
 
   handleClick = () => {
-    this.postElement();
-  }
-
-  //
-  // API CALLS
-  // ------------------------------
-
-  getElements() {
-    axios.get('/api/element')
-      .then(response => {
-        this.props.dispatch({ type: 'SET_ELEMENTS', payload: response.data });
-      })
-      .catch(error => {
-          console.log('error with element get request', error);
-      });
-  }
-
-  postElement() {
-    axios.post('/api/element', this.state)
-      .then(() => {
-          this.getElements();
-          this.setState({
-            newElement: '',
-        });
-      })
-      .catch(error => {
-        console.log('error with element get request', error);
-      });
+    this.props.dispatch({
+      type: 'POST_ELEMENT',
+      payload: this.state
+    });
   }
 
   render() {
@@ -65,19 +43,19 @@ class App extends Component {
       <AppLayout>
         <div className="formWrap">
           {/* BUTTON ONE INCREMENTS */}
-          <button
+          {/* <button
             className="btn"
             onClick={() => this.props.dispatch({ type: 'BUTTON_ONE' })}
           >
             Button One
-          </button>
+          </button> */}
           {/* BUTTON TWO DECREMENTS */}
-          <button
+          {/* <button
             className="btn"
             onClick={() => this.props.dispatch({ type: 'BUTTON_TWO' })}
           >
             Button Two
-          </button>
+          </button> */}
 
           {/* ADDING ELEMENTS TO THE SERVER */}
           <input
