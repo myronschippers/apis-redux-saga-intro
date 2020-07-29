@@ -64,12 +64,14 @@ class App extends Component {
     return (
       <AppLayout>
         <div className="formWrap">
+          {/* BUTTON ONE INCREMENTS */}
           <button
             className="btn"
             onClick={() => this.props.dispatch({ type: 'BUTTON_ONE' })}
           >
             Button One
           </button>
+          {/* BUTTON TWO DECREMENTS */}
           <button
             className="btn"
             onClick={() => this.props.dispatch({ type: 'BUTTON_TWO' })}
@@ -77,6 +79,7 @@ class App extends Component {
             Button Two
           </button>
 
+          {/* ADDING ELEMENTS TO THE SERVER */}
           <input
             className="field"
             value={this.state.newElement}
