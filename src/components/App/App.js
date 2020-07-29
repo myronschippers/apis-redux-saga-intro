@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import './App.css';
 
+// CUSTOM COMPONENTS
+import AppLayout from '../AppLayout/AppLayout';
+
 class App extends Component {
   state = {
     newElement: '',
@@ -60,11 +63,34 @@ class App extends Component {
   render() {
     return (
       <AppLayout>
-        <button onClick={() => this.props.dispatch({ type: 'BUTTON_ONE' })}>Button One</button>
-        <button onClick={() => this.props.dispatch({ type: 'BUTTON_TWO' })}>Button Two</button>
-        <input value={this.state.newElement} onChange={this.handleChange} />
-        <button onClick={this.handleClick}>Add Element</button>
-        <pre>{JSON.stringify(this.props.reduxState)}</pre>
+        <div className="formWrap">
+          <button
+            className="btn"
+            onClick={() => this.props.dispatch({ type: 'BUTTON_ONE' })}
+          >
+            Button One
+          </button>
+          <button
+            className="btn"
+            onClick={() => this.props.dispatch({ type: 'BUTTON_TWO' })}
+          >
+            Button Two
+          </button>
+
+          <input
+            className="field"
+            value={this.state.newElement}
+            onChange={this.handleChange}
+          />
+          <button
+            className="btn"
+            onClick={this.handleClick}
+          >
+            Add Element
+          </button>
+        </div>
+
+        <pre>{JSON.stringify(this.props.store)}</pre>
       </AppLayout>
     );
   }

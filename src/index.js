@@ -7,8 +7,12 @@ import './index.css';
 
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import createSagaMiddleware from 'redux-saga';
 import logger from 'redux-logger';
+
+//
+// REDUCERS
+// - reducer is a function that runs every time an action is dispatched
+// ------------------------------
 
 const firstReducer = (state = 0, action) => {
     if (action.type === 'BUTTON_ONE') {
@@ -30,35 +34,39 @@ const secondReducer = (state = 100, action) => {
 
 const elementListReducer = (state = [], action) => {
     switch (action.type) {
-        case 'SET_ELEMENTS':
-            return action.payload;
-        default:
-            return state;
+      case 'SET_ELEMENTS':
+        return action.payload;
+      default:
+        return state;
     }
-};    
+};
 
-// this is the saga that will watch for actions
-function* watcherSaga() {
+//
+// SAGAS
+// ------------------------------
 
-}
+// TODO - watch for saga dispatches
 
-
-const sagaMiddleware = createSagaMiddleware();
+// TODO - add saga middleware
 
 // This is creating the store
-// the store is the big JavaScript Object that holds all of the information for our application
+// the store is a big JavaScript Object that holds all of our reducers
 const storeInstance = createStore(
-    // This function is our first reducer
-    // reducer is a function that runs every time an action is dispatched
+    // This function registers all of our reducers
     combineReducers({
         firstReducer,
         secondReducer,
         elementListReducer,
     }),
-    applyMiddleware(sagaMiddleware, logger),
+    applyMiddleware(logger),
 );
 
-sagaMiddleware.run(watcherSaga);
+// TODO - run sagas
 
-ReactDOM.render(<Provider store={storeInstance}><App/></Provider>, document.getElementById('root'));
+ReactDOM.render(
+  <Provider store={storeInstance}>
+    <App/>
+  </Provider>,
+  document.getElementById('root')
+);
 registerServiceWorker();
