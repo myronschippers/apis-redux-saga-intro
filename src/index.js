@@ -8,6 +8,7 @@ import './index.css';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
+import createSagaMiddleware from 'redux-saga';
 
 //
 // REDUCERS
@@ -46,8 +47,12 @@ const elementListReducer = (state = [], action) => {
 // ------------------------------
 
 // TODO - watch for saga dispatches
+function* watchSaga() {
+  // register all of our sagas
+}
 
 // TODO - add saga middleware
+const sagaMiddleware = createSagaMiddleware();
 
 // This is creating the store
 // the store is a big JavaScript Object that holds all of our reducers
@@ -58,10 +63,11 @@ const storeInstance = createStore(
         secondReducer,
         elementListReducer,
     }),
-    applyMiddleware(logger),
+    applyMiddleware(sagaMiddleware, logger),
 );
 
 // TODO - run sagas
+sagaMiddleware.run(watchSaga);
 
 ReactDOM.render(
   <Provider store={storeInstance}>
