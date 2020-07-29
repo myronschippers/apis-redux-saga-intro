@@ -162,3 +162,7 @@ CARD HEADING
   margin: 0;
   padding-left: 8px;
 }
+
+.txt_lg {
+  font-size: 1.6rem;
+}

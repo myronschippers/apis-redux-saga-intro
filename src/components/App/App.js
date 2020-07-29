@@ -90,7 +90,7 @@ class App extends Component {
           </button>
         </div>
 
-        <pre>{JSON.stringify(this.props.store)}</pre>
+        <pre className="txt_lg">{JSON.stringify(this.props.store)}</pre>
       </AppLayout>
     );
   }
